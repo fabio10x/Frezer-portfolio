@@ -1,10 +1,23 @@
 const themeToggleButton = document.querySelector('#theme-toggle');
 const body = document.querySelector('body');
-themeToggleButton.addEventListener('click', function() {
-    // This line stays the same. It toggles the class.
-    body.classList.toggle('light-mode');
 
-    // Use a ternary operator to set the button text based on the current theme.
-    const isLightMode = body.classList.contains('light-mode');
-    themeToggleButton.textContent = isLightMode ? 'Switch to Dark Mode' : 'Switch to Light Mode';
-});
+if (themeToggleButton) { // Ensure the button exists before adding event listener
+    themeToggleButton.addEventListener('click', function() {
+        body.classList.toggle('light-mode');
+
+        const isLightMode = body.classList.contains('light-mode');
+        themeToggleButton.textContent = isLightMode ? 'Switch to Dark Mode' : 'Switch to Light Mode';
+    });
+}
+
+// Mobile Navigation Toggle
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+        // Optional: Add aria-expanded for accessibility
+        menuToggle.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+    });
+}

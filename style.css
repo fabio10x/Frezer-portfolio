@@ -63,8 +63,8 @@ h1, h2, h3 {
 
 .logo {
   font-size: 24px;
-  font-weight: 700;
-  color: #2f57ef;
+  font-weight: 700; /* Use a specific color for the logo if it should always be distinct */
+  color: var(--primary-color); /* Use primary color for logo */
 }
 
 .nav-links {
@@ -75,41 +75,120 @@ h1, h2, h3 {
 
 .nav-links a {
   text-decoration: none;
-  color: #ffffff;
+  color: var(--text-color); /* Use text color for nav links */
   font-weight: 500;
   transition: 0.3s;
 }
 
 .nav-links a:hover {
-  color: #2f57ef;
+  color: var(--primary-color); /* Use primary color for hover */
 }
 
-/* NAV BUTTONS */
+/* ==================== MOBILE NAVIGATION (MISSING) ==================== */
+/* You'll likely need to add a hamburger menu icon in your HTML for this */
+.menu-toggle {
+    display: none; /* Hidden by default on desktop */
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    z-index: 1000;
+}
+
+/* ==================== NAV BUTTONS (Desktop) ==================== */
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    /* This class is now primarily for desktop layout of buttons */
+    gap: 10px; /* Adds space between the buttons */
+}
+
 .nav-buttons a {
   text-decoration: none;
   padding: 8px 20px;
   border-radius: 25px;
   font-weight: 500;
   transition: 0.3s;
-  color: #ffffff;
+  border: 1px solid var(--primary-color); /* Use primary color for button border */
+  display: inline-block; /* Ensures padding and border are applied correctly */
 }
 
-.login {
-  color: #2f57ef;
-  border: 1px solid #2f57ef;
-  margin-right: 10px;
+/* Secondary/Outlined Button (e.g., Theme Switcher) */
+.btn-secondary {
+  color: var(--primary-color); /* Use primary color for text */
+  background-color: transparent;
 }
 
-.signup {
-  background-color: #2f57ef;
-  color: white;
-  border: 1px solid #2f57ef;
+/* Primary/Filled Button (e.g., Hire Me) */
+.btn-primary {
+  background-color: var(--primary-color); /* Use primary color for background */
+  color: var(--bg-color); /* Use background color for text to ensure contrast */
 }
 
-.hire Me:hover {
-  background-color: #1d3ccf;
+.btn-primary:hover {
+  background-color: var(--primary-color); /* Keep primary color for hover */
+  filter: brightness(0.9); /* Slightly darken on hover */
+}
+.btn-secondary:hover {
+    filter: brightness(1.1); /* Slightly lighten on hover */
 }
 
+/* ==================== MEDIA QUERIES FOR RESPONSIVENESS ==================== */
+
+@media (max-width: 768px) {
+    /* Adjustments for tablets and smaller screens */
+    .menu-toggle {
+        display: block; /* Show hamburger menu */
+    }
+
+    .navbar {
+        flex-wrap: wrap; /* Allow items to wrap */
+        padding: 15px 5%; /* Adjust padding for smaller screens */
+    }
+
+    /* Hide nav links and buttons by default on mobile */
+    .nav-links {
+        display: none;
+        /* Reset desktop flex properties */
+        flex-direction: column;
+        gap: 0;
+    }
+
+    /* Styles for the active/open mobile menu */
+    .nav-links.active {
+        display: flex; /* Show the menu */
+        flex-direction: column; /* Stack navigation links vertically */
+        align-items: center; /* Center items in the column */
+    }
+
+    .nav-links {
+        width: 100%;
+        text-align: center;
+        background-color: var(--secondary-bg); /* Or a specific mobile menu background */
+        position: absolute;
+        top: 70px; /* Adjust based on navbar height */
+        left: 0;
+        padding: 20px 0;
+        box-shadow: 0 4px 8px var(--shadow-color);
+    }
+
+    .nav-links li {
+        width: 100%; /* Make list items take full width */
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+    }
+
+    .nav-links.active .nav-buttons-wrapper { /* Target the wrapper for buttons */
+        display: flex; /* Show buttons ONLY when the menu is active */
+        justify-content: center; /* Center the buttons */
+        margin-top: 15px; /* Add space above the buttons */
+    }
+}
 
 /* ======================= HEADER ================*/
 
@@ -131,6 +210,17 @@ header p {
     color: var(--primary-color);
     margin-bottom: 2rem;
     font-weight: 600;
+}
+
+@media (max-width: 600px) {
+    /* Adjustments for mobile phones */
+    .container {
+        padding: 0 15px; /* Slightly less padding on very small screens */
+    }
+
+    header h1 {
+        font-size: 2.5rem; /* Smaller heading on mobile */
+    }
 }
 
 
